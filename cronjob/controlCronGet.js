@@ -11,7 +11,7 @@ export async function cronFsProdDetail() {
       //   },
       type: QueryTypes.SELECT,
     });
-
+    console.log(finishProdDetail);
     if (!finishProdDetail || finishProdDetail.length === 0)
       return "Tidak ada data atau terdapat error saat mengambil data Finishing Prod Detail";
 
