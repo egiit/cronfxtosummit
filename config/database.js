@@ -51,7 +51,7 @@ export const dbFXMain = new Sequelize(
   FX_DBMAIN_USER,
   FX_DBMAIN_PASS,
   {
-    host: DBMAIN_HOST,
+    host: FX_DBMAIN_HOST,
     port: 1433,
     dialect: "mssql",
     pool: {
