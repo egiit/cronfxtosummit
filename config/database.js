@@ -11,6 +11,10 @@ const {
   DBMAIN_USER,
   DBMAIN_PASS,
   DBMAIN_HOST,
+  FX_DBMAIN_NAME,
+  FX_DBMAIN_USER,
+  FX_DBMAIN_PASS,
+  FX_DBMAIN_HOST,
 } = process.env;
 tedious.Connection;
 
