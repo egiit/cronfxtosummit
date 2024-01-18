@@ -22,9 +22,12 @@ const runDb = async () => {
 };
 runDb();
 
+cronFsProdDetail();
+
+/*
 cron.schedule(" 1 4 * * *", () => {
   console.log("running get data");
   cronFsProdDetail();
 });
-
+*/
 app.listen(PORT, () => console.log(`Server Runing On port : ${PORT}`));

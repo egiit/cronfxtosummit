@@ -1,21 +1,21 @@
 import { QueryTypes } from "sequelize";
-import { dbAudit } from "../config/database.js";
-import { queryGetFinishProd } from "../models/modelsAuditTrial.js";
-import { FinishingProdDetail } from "../models/modelsMainDb.js";
+import { dbAudit, dbFXMain } from "../config/database.js";
+import { queryGetFXFinishProd, queryGetFinishProd } from "../models/modelsAuditTrial.js";
+import { FX_FinishingProdDetail} from "../models/modelsMainDb.js";
 
 export async function cronFsProdDetail() {
   try {
-    const finishProdDetail = await dbAudit.query(queryGetFinishProd, {
+    const finishProdDetail = await dbFXMain.query(queryGetFXFinishProd, {
       //   replacements: {
       //     schDate: date,
       //   },
       type: QueryTypes.SELECT,
     });
-    console.log(finishProdDetail);
+    //console.log(finishProdDetail);
     if (!finishProdDetail || finishProdDetail.length === 0)
       return "Tidak ada data atau terdapat error saat mengambil data Finishing Prod Detail";
 
-    const postDataFinish = await FinishingProdDetail.bulkCreate(
+    const postDataFinish = await FX_FinishingProdDetail.bulkCreate(
       finishProdDetail
     );
     if (!postDataFinish) return console.log("terdapat error saat insert data");

@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import { dbAudit, dbSummitMain } from "../config/database.js";
 
-export const FinishingProdDetail = dbSummitMain.define(
-  "FinishingProdDetail",
+export const FX_FinishingProdDetail = dbSummitMain.define(
+  "FX_FinishingProdDetail",
   {
     SiteCode: {
       type: DataTypes.STRING(50),
@@ -82,10 +82,10 @@ export const FinishingProdDetail = dbSummitMain.define(
     },
   },
   {
-    tableName: "FinishingProdDetail",
+    tableName: "FX_FinishingProdDetail",
     createdAt: false,
     updatedAt: false,
   }
 );
 
-FinishingProdDetail.removeAttribute("id");
+FX_FinishingProdDetail.removeAttribute("id");
