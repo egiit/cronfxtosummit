@@ -40,3 +40,26 @@ export const dbSummitMain = new Sequelize(
     },
   }
 );
+
+
+export const dbFXMain = new Sequelize(
+  FX_DBMAIN_NAME,
+  FX_DBMAIN_USER,
+  FX_DBMAIN_PASS,
+  {
+    host: DBMAIN_HOST,
+    port: 1433,
+    dialect: "mssql",
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    },
+    logging: false,
+    timezone: "+07:00",
+    dialectOptions: {
+      timezone: "local",
+      options: { encrypt: true }
+    },
+  }
+);
