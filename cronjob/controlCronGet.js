@@ -1,7 +1,7 @@
 import { QueryTypes } from "sequelize";
 import { dbAudit, dbFXMain, dbSummitMain } from "../config/database.js";
-import { queryGetBOMSourcingDetail, queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd } from "../models/modelsAuditTrial.js";
-import { FX_BOMSourcingDetail, FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail} from "../models/modelsMainDb.js";
+import { queryGetBOMSourcingDetail, queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd, queryGetLTNListing } from "../models/modelsAuditTrial.js";
+import { FX_BOMSourcingDetail, FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail, FX_LTNListing} from "../models/modelsMainDb.js";
 
 export async function cronFsProdDetail() {
   try {
@@ -86,6 +86,18 @@ export async function cronBOMSourcingDetail(){
     const postDATABOMSourcingDetail = await FX_BOMSourcingDetail.bulkCreate(dataBOMSourceDetail);
     if(!postDATABOMSourcingDetail) return console.log("Action: Insert, Status: Failed, Table: BOM Sourcing Detail");
     return console.log("Action: Insert, Status: Success, Table: BOM Sourcing Detail");
+  } catch(err){
+    return console.log(err);
+  }
+}
+
+export async function cronLTNListing(){
+  try{
+    const dataLTNListing = await dbFXMain.query(queryGetLTNListing, {type:QueryTypes.SELECT});
+    if(!dataLTNListing || dataLTNListing.length === 0) return "Data LTN Listing is empty!";
+    const postDataLTNListing = await FX_LTNListing.bulkCreate(dataLTNListing);
+    if(!postDataLTNListing) return console.log("Action: Insert, Status: Failed, Table: LTN Listing");
+    return console.log("Action: Insert, Status: Success, Table: LTN Listing");
   } catch(err){
     return console.log(err);
   }

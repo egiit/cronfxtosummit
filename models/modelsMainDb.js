@@ -1275,6 +1275,184 @@ export const FX_BOMSourcingDetail = dbSummitMain.define('FX_BOMSourcingDetail', 
   updatedAt: false,
 });
 
+export const FX_LTNListing = dbSummitMain.define('FXLTNListing', {
+  StockHoldingCompany: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  LTNID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  CreatedDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  CreatedID: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  LTNStatus: {
+    type: DataTypes.STRING(8),
+    allowNull: true,
+  },
+  SourceSiteID: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  SourceDepartment: {
+    type: DataTypes.STRING(50),
+    allowNull: true,
+  },
+  SourceWarehouse: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  SourceLocation: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  DestinationSite: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  DestinationDepartment: {
+    type: DataTypes.STRING(50),
+    allowNull: true,
+  },
+  DestinationWarehouse: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  DestinationLocation: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  MaterialReceivedID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  BOMPOID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  ItemGroupCode: {
+    type: DataTypes.CHAR(2),
+    allowNull: true,
+  },
+  ItemType: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  ItemCategory: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  ItemID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  ItemDescription: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  ItemDimensionID: {
+    type: DataTypes.STRING(5),
+    allowNull: true,
+  },
+  ColorDescription: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  SizeDescription: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  SerialNo: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  ItemStatus: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  ItemQuality: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  PurchaseUOM: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  TransferQty: {
+    type: DataTypes.DECIMAL(38, 2),
+    allowNull: true,
+  },
+  Customer: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  CustomerSeason: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  CustomerDivision: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  CustomerByPlan: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  CustomerProgram: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  OrderTypeCode: {
+    type: DataTypes.STRING(3),
+    allowNull: true,
+  },
+  OrderID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  OrderDescription: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  OrderReferenceNo: {
+    type: DataTypes.STRING(50),
+    allowNull: true,
+  },
+  Remark: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  CustomDocumentType: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  CustomDocNo: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  CustomDocDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  SourceWarehouseID: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  DestinationWarehouseID: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+}, {
+  tableName: 'FX_LTNListing',
+  timestamps: false, // Remove this line if you want to include timestamps (createdAt, updatedAt)
+});
+
 
 FX_BOMSourcingDetail.removeAttribute("id");
 FX_FinishingProdDetail.removeAttribute("id");

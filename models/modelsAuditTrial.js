@@ -11,3 +11,5 @@ export const queryGetFXCustOrderDetail = `SELECT * FROM CustomerOrderDetail`;
 export const queryGetFXGINDetail = `SELECT * FROM GINDetail WHERE PostedDate = DATEADD(DAY,-1,GETDATE()) `;
 
 export const queryGetBOMSourcingDetail = `SELECT * FROM BOMSourcingDetail WHERE (CreatedDate = DATEADD(DAY,-1,GETDATE())) OR (ModifiedDate  < DATEADD(DAY,-1,GETDATE()))`;
+
+export const queryGetLTNListing = `SELECT * FROM LTNListing WHERE CreatedDate = DATEADD(DAY,-1,GETDATE()) `;
