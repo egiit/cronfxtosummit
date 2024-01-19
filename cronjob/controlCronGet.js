@@ -1,7 +1,7 @@
 import { QueryTypes } from "sequelize";
-import { dbAudit, dbFXMain } from "../config/database.js";
-import { queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGRNDetail, queryGetFinishProd } from "../models/modelsAuditTrial.js";
-import { FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GRNDetail} from "../models/modelsMainDb.js";
+import { dbAudit, dbFXMain, dbSummitMain } from "../config/database.js";
+import { queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGRNDetail, queryGetFinishProd } from "../models/modelsAuditTrial.js";
+import { FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GRNDetail} from "../models/modelsMainDb.js";
 
 export async function cronFsProdDetail() {
   try {
@@ -53,5 +53,16 @@ export async function cronCustomerShipmentDetail() {
       return console.log("Success Post Data of Customer Shipment Detail!");
   } catch(err){
     return console.log(err)
+  }
+}
+
+export async function cronCustomerOrderDetail(){
+  try{
+    const dropCustOrderDet = await FX_CustomerOrderDetail.truncate();
+    const dataCustOrderDetail = await dbFXMain.query(queryGetFXCustOrderDetail, {type: QueryTypes.SELECT});
+    const postDataCustOrderDetail = await FX_CustomerOrderDetail.bulkCreate(dataCustOrderDetail);
+    return console.log("Action: Insert, Status: Success, Table: Customer Order Detail");
+  } catch(err){
+    return console.log(err);
   }
 }

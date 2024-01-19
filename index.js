@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { dbAudit, dbFXMain, dbSummitMain } from "./config/database.js";
-import { cronCustomerShipmentDetail, cronFsProdDetail, cronGRNDetail } from "./cronjob/controlCronGet.js";
+import { cronCustomerOrderDetail, cronCustomerShipmentDetail, cronFsProdDetail, cronGRNDetail } from "./cronjob/controlCronGet.js";
 import cron from "node-cron";
 
 dotenv.config();
@@ -27,6 +27,9 @@ cron.schedule(" 1 4 * * *", () => {
   cronFsProdDetail();
   cronGRNDetail();
   cronCustomerShipmentDetail();
+  cronCustomerOrderDetail();
+
 });
+
 
 app.listen(PORT, () => console.log(`Server Runing On port : ${PORT}`));
