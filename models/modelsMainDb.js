@@ -2227,6 +2227,176 @@ export const FX_MRVListing = dbSummitMain.define('FX_MRVListing', {
   timestamps: false
 });
 
+export const FX_MSDListing = dbSummitMain.define('FX_MSDListing', {
+  StockHoldingCompany: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  MSDID: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  CreatedDate: {
+    type: DataTypes.DATE,
+    defaultValue: null
+  },
+  MSDStatus: {
+    type: DataTypes.STRING(8),
+    defaultValue: null
+  },
+  StatusDate: {
+    type: DataTypes.DATE,
+    defaultValue: null
+  },
+  CreatedID: {
+    type: DataTypes.STRING(20),
+    defaultValue: null
+  },
+  PostedID: {
+    type: DataTypes.STRING(20),
+    defaultValue: null
+  },
+  DeletedID: {
+    type: DataTypes.STRING(20),
+    defaultValue: null
+  },
+  MaterialReceivedID: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  BOMPOID: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  ItemGroupCode: {
+    type: DataTypes.STRING(2),
+    defaultValue: null
+  },
+  ItemType: {
+    type: DataTypes.STRING(103),
+    defaultValue: null
+  },
+  ItemCategory: {
+    type: DataTypes.STRING(105),
+    defaultValue: null
+  },
+  ItemID: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  ItemDescription: {
+    type: DataTypes.STRING(302),
+    defaultValue: null
+  },
+  ItemDimensionID: {
+    type: DataTypes.STRING(5),
+    defaultValue: null
+  },
+  ColorDescription: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  SizeDescription: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  SerialNo: {
+    type: DataTypes.STRING(20),
+    defaultValue: null
+  },
+  SiteCode: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  WHDepartment: {
+    type: DataTypes.STRING(50),
+    defaultValue: null
+  },
+  Warehouse: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  WHLocation: {
+    type: DataTypes.STRING(302),
+    defaultValue: null
+  },
+  ItemStatus: {
+    type: DataTypes.STRING(103),
+    defaultValue: null
+  },
+  ItemQuality: {
+    type: DataTypes.STRING(103),
+    defaultValue: null
+  },
+  PurchaseUOM: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  DiscontinueQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    defaultValue: null
+  },
+  PrimaryCurrencyCode: {
+    type: DataTypes.STRING(3),
+    defaultValue: null
+  },
+  PrimaryCurrencyCost: {
+    type: DataTypes.DECIMAL(18, 6),
+    defaultValue: null
+  },
+  DiscontinuedValue: {
+    type: DataTypes.DECIMAL(37, 8),
+    defaultValue: null
+  },
+  Customer: {
+    type: DataTypes.STRING(20),
+    defaultValue: null
+  },
+  CustomerSeason: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  CustomerDivision: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  CustomerByPlan: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  CustomerProgram: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  OrderTypeCode: {
+    type: DataTypes.STRING(3),
+    defaultValue: null
+  },
+  OrderID: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  OrderDescription: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  OrderReferenceNo: {
+    type: DataTypes.STRING(50),
+    defaultValue: null
+  },
+  Remark: {
+    type: DataTypes.STRING(500),
+    defaultValue: null
+  }
+}, {
+  tableName: 'FX_MSDListing',
+  engine: 'InnoDB',
+  charset: 'utf8mb4',
+  collate: 'utf8mb4_general_ci',
+  timestamps: false
+});
+
+
 
 FX_BOMSourcingDetail.removeAttribute("id");
 FX_FinishingProdDetail.removeAttribute("id");
@@ -2236,5 +2406,6 @@ FX_LTNListing.removeAttribute("id");
 FX_MRPListing.removeAttribute("id");
 FX_MRRListing.removeAttribute("id");
 FX_MRVListing.removeAttribute("id");
+FX_MSDListing.removeAttribute("id");
 FX_CustomerShipmentDetail.removeAttribute("id");
 FX_CustomerOrderDetail.removeAttribute("id");

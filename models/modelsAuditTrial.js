@@ -21,3 +21,5 @@ export const queryGetMRRListing = `SELECT * FROM MRRListing WHERE PostedDate = D
 export const queryGetMRSListing = `SELECT * FROM MRSListing WHERE CONVERT(CreatedDate, GETDATE()) = DATEADD(DAY,-1,GETDATE()) `;
 
 export const queryGetMRVListing = `SELECT * FROM MRVListing WHERE CONVERT(CreatedDate, GETDATE()) = DATEADD(DAY,-1,GETDATE()) `;
+
+export const queryGetMSDListing = `SELECT * FROM MRVListing WHERE CONVERT(StatusDate, GETDATE()) = DATEADD(DAY,-1,GETDATE()) `;

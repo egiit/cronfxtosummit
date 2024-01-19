@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { dbAudit, dbFXMain, dbSummitMain } from "./config/database.js";
-import { cronBOMSourcingDetail, cronCustomerOrderDetail, cronCustomerShipmentDetail, cronFsProdDetail, cronGINDetail, cronGRNDetail, cronLTNListing, cronMRPListing, cronMRRListing, cronMRSListing, cronMRVListing } from "./cronjob/controlCronGet.js";
+import { cronBOMSourcingDetail, cronCustomerOrderDetail, cronCustomerShipmentDetail, cronFsProdDetail, cronGINDetail, cronGRNDetail, cronLTNListing, cronMRPListing, cronMRRListing, cronMRSListing, cronMRVListing, cronMSDListing } from "./cronjob/controlCronGet.js";
 import cron from "node-cron";
 
 dotenv.config();
@@ -36,6 +36,7 @@ cron.schedule(" 1 4 * * *", () => {
   cronMRRListing();
   cronMRSListing();
   cronMRVListing();
+  cronMSDListing();
 });
 
 
