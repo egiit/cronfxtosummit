@@ -13,3 +13,5 @@ export const queryGetFXGINDetail = `SELECT * FROM GINDetail WHERE PostedDate = D
 export const queryGetBOMSourcingDetail = `SELECT * FROM BOMSourcingDetail WHERE (CreatedDate = DATEADD(DAY,-1,GETDATE())) OR (ModifiedDate  < DATEADD(DAY,-1,GETDATE()))`;
 
 export const queryGetLTNListing = `SELECT * FROM LTNListing WHERE CreatedDate = DATEADD(DAY,-1,GETDATE()) `;
+
+export const queryGetMRPListing = `SELECT * FROM MRPListing_MRPDetail WHERE CONVERT(MOCreatedDate, GETDATE()) = DATEADD(DAY,-1,GETDATE()) `;

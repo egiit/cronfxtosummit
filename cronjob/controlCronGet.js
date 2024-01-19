@@ -1,7 +1,7 @@
 import { QueryTypes } from "sequelize";
 import { dbAudit, dbFXMain, dbSummitMain } from "../config/database.js";
-import { queryGetBOMSourcingDetail, queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd, queryGetLTNListing } from "../models/modelsAuditTrial.js";
-import { FX_BOMSourcingDetail, FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail, FX_LTNListing} from "../models/modelsMainDb.js";
+import { queryGetBOMSourcingDetail, queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd, queryGetLTNListing, queryGetMRPListing } from "../models/modelsAuditTrial.js";
+import { FX_BOMSourcingDetail, FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail, FX_LTNListing, FX_MRPListing} from "../models/modelsMainDb.js";
 
 export async function cronFsProdDetail() {
   try {
@@ -98,6 +98,18 @@ export async function cronLTNListing(){
     const postDataLTNListing = await FX_LTNListing.bulkCreate(dataLTNListing);
     if(!postDataLTNListing) return console.log("Action: Insert, Status: Failed, Table: LTN Listing");
     return console.log("Action: Insert, Status: Success, Table: LTN Listing");
+  } catch(err){
+    return console.log(err);
+  }
+}
+
+export async function cronMRPListing(){
+  try{
+    const dataMRPListing = await dbFXMain.query(queryGetMRPListing, {type:QueryTypes.SELECT});
+    if(!dataMRPListing || dataMRPListing.length === 0) return "Data MRP Listing is empty";
+    const postDataMRPListing = await FX_MRPListing.bulkCreate(dataMRPListing);
+    if(!postDataMRPListing) return console.log("Action: Insert, Status: Failed, Table: MRP Listing");
+    return console.log("Action: Insert, Status: Success, Table: MRP Listing");
   } catch(err){
     return console.log(err);
   }

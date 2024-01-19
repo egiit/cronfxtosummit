@@ -1275,7 +1275,7 @@ export const FX_BOMSourcingDetail = dbSummitMain.define('FX_BOMSourcingDetail', 
   updatedAt: false,
 });
 
-export const FX_LTNListing = dbSummitMain.define('FXLTNListing', {
+export const FX_LTNListing = dbSummitMain.define('FX_LTNListing', {
   StockHoldingCompany: {
     type: DataTypes.STRING(10),
     allowNull: true,
@@ -1454,9 +1454,109 @@ export const FX_LTNListing = dbSummitMain.define('FXLTNListing', {
 });
 
 
+export const FX_MRPListing = dbSummitMain.define('FX_MRPListing', {
+  ItemID: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  ItemDimensionID: {
+    type: DataTypes.STRING(5),
+    allowNull: true,
+  },
+  CompanyID: {
+    type: DataTypes.STRING(5),
+    allowNull: true,
+  },
+  CustomerCode: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  OrderID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  OrderRefPONo: {
+    type: DataTypes.STRING(50),
+    allowNull: true,
+  },
+  OrderPOStyleRef: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  FGColorCode: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  BOMID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  MOID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  MOCreatedDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  MRPRevID: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  ItemTypeCode: {
+    type: DataTypes.CHAR(2),
+    allowNull: true,
+  },
+  ItemCategoryCode: {
+    type: DataTypes.CHAR(3),
+    allowNull: true,
+  },
+  ItemCode: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  ItemDescription: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  Color: {
+    type: DataTypes.STRING(223),
+    allowNull: true,
+  },
+  SizeCode: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  SerialNo: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  MRPUOM: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  MRPQty: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  MRNQty: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  ToBeMRNQty: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+}, {
+  tableName: 'FX_MRPListing',
+  timestamps: false, // Remove this line if you want to include timestamps (createdAt, updatedAt)
+});
+
+
 FX_BOMSourcingDetail.removeAttribute("id");
 FX_FinishingProdDetail.removeAttribute("id");
 FX_GRNDetail.removeAttribute("id");
 FX_GINDetail.removeAttribute("id");
+FX_LTNListing.removeAttribute("id");
 FX_CustomerShipmentDetail.removeAttribute("id");
 FX_CustomerOrderDetail.removeAttribute("id");
