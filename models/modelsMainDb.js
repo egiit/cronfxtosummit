@@ -1000,7 +1000,283 @@ export const FX_GINDetail = dbSummitMain.define('FXGINDetail', {
   updatedAt: false,
 });
 
+export const FX_BOMSourcingDetail = dbSummitMain.define('FX_BOMSourcingDetail', {
+  BOMID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  BOMCreatedDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  OrderID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  OrderRefPONo: {
+    type: DataTypes.STRING(50),
+    allowNull: true,
+  },
+  OrderPOStyleRef: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  ItemTypeCode: {
+    type: DataTypes.CHAR(2),
+    allowNull: true,
+  },
+  StockHoldingCompanyID: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  BOMLineID: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  BOMLineStatus: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  ItemCategoryCode: {
+    type: DataTypes.CHAR(3),
+    allowNull: true,
+  },
+  ItemCategory: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  ItemID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  ItemDescription: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  ItemDimensionID: {
+    type: DataTypes.STRING(5),
+    allowNull: true,
+  },
+  ColorID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  ColorDescription: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  SizeID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  SizeDescription: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  SerialNo: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  ConsumptionUOM: {
+    type: DataTypes.CHAR(5),
+    allowNull: true,
+  },
+  AVG_Cons_Standard: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  AVG_Cons_Internal: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  AVG_Cons_Costing: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  AVG_Cons_Booking: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  AVG_Cons_Production: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  AVB_Cons_ScrapPercnetage: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  ExtraOrderQty: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  Sum_OrderQty: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  RequireQty: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  VendorID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  CountryofOrginalID: {
+    type: DataTypes.CHAR(2),
+    allowNull: true,
+  },
+  PurchasingUOMID: {
+    type: DataTypes.CHAR(5),
+    allowNull: true,
+  },
+  RequiredPurchaseQty: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  PlanPurchaseQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    allowNull: true,
+  },
+  PlanPurchaseQtyVariances: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  PlanPurchaseQtyVariancePercent: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  CurrencyCode: {
+    type: DataTypes.CHAR(3),
+    allowNull: true,
+  },
+  LatestPurchasePrice: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  CostPerUnit: {
+    type: DataTypes.DECIMAL(18, 6),
+    allowNull: true,
+  },
+  Financecost: {
+    type: DataTypes.DECIMAL(18, 6),
+    allowNull: true,
+  },
+  FreightCost: {
+    type: DataTypes.DECIMAL(18, 6),
+    allowNull: true,
+  },
+  OtherCost: {
+    type: DataTypes.DECIMAL(18, 6),
+    allowNull: true,
+  },
+  TotalCostPerUnit: {
+    type: DataTypes.DECIMAL(21, 6),
+    allowNull: true,
+  },
+  TotalCost: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  Note: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  ApprovedPurchaseQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    allowNull: true,
+  },
+  PendingApprovalQty: {
+    type: DataTypes.DECIMAL(19, 2),
+    allowNull: true,
+  },
+  PendingApprovalQtyPercent: {
+    type: DataTypes.DECIMAL(38, 19),
+    allowNull: true,
+  },
+  TotalApprovedPurchaseCost: {
+    type: DataTypes.DECIMAL(38, 6),
+    allowNull: true,
+  },
+  ApprovalSelection: {
+    type: DataTypes.BOOLEAN,
+    allowNull: true,
+  },
+  ApprovalQty: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  AllocatedQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    allowNull: true,
+  },
+  POQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    allowNull: true,
+  },
+  PONumbers: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  PendingPurchaseOrderQty: {
+    type: DataTypes.DECIMAL(20, 2),
+    allowNull: true,
+  },
+  UnConfirmedPOQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    allowNull: true,
+  },
+  ConfirmedGRNQty: {
+    type: DataTypes.DECIMAL(38, 2),
+    allowNull: true,
+  },
+  PendingGRNQty: {
+    type: DataTypes.DECIMAL(38, 2),
+    allowNull: true,
+  },
+  UnconfirmedGRNQty: {
+    type: DataTypes.DECIMAL(38, 2),
+    allowNull: true,
+  },
+  TransferINQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    allowNull: true,
+  },
+  TransferOUTQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    allowNull: true,
+  },
+  ItemStatusFlag: {
+    type: DataTypes.BOOLEAN,
+    allowNull: true,
+  },
+  BomEstimationNote: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  CreatedID: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  CreatedDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  ModifiedID: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  ModifiedDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+}, {
+  tableName: 'FX_BOMSourcingDetail',
+  createdAt: false,
+  updatedAt: false,
+});
 
+
+FX_BOMSourcingDetail.removeAttribute("id");
 FX_FinishingProdDetail.removeAttribute("id");
 FX_GRNDetail.removeAttribute("id");
 FX_GINDetail.removeAttribute("id");

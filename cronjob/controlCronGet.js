@@ -1,7 +1,7 @@
 import { QueryTypes } from "sequelize";
 import { dbAudit, dbFXMain, dbSummitMain } from "../config/database.js";
-import { queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd } from "../models/modelsAuditTrial.js";
-import { FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail} from "../models/modelsMainDb.js";
+import { queryGetBOMSourcingDetail, queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd } from "../models/modelsAuditTrial.js";
+import { FX_BOMSourcingDetail, FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail} from "../models/modelsMainDb.js";
 
 export async function cronFsProdDetail() {
   try {
@@ -71,9 +71,21 @@ export async function cronGINDetail(){
   try{
     const dataGINDetail = await dbFXMain.query(queryGetFXGINDetail, {type: QueryTypes.SELECT});
     if(!dataGINDetail || dataGINDetail.length === 0) return "Data GIN Detail is empty!";
-      const postDataGINDetail = await FX_GINDetail.bulkCreate(dataGINDetail);
-      if(!postDataGINDetail) return console.log("Action: Insert, Status: Failed, Table: Customer Order Detail");
-      return console.log("Action: Insert, Status: Success, Table: GIN Detail");
+    const postDataGINDetail = await FX_GINDetail.bulkCreate(dataGINDetail);
+    if(!postDataGINDetail) return console.log("Action: Insert, Status: Failed, Table: Customer Order Detail");
+    return console.log("Action: Insert, Status: Success, Table: GIN Detail");
+  } catch(err){
+    return console.log(err);
+  }
+}
+
+export async function cronBOMSourcingDetail(){
+  try{
+    const dataBOMSourceDetail = await dbFXMain.query(queryGetBOMSourcingDetail, {type: QueryTypes.SELECT});
+    if(!dataBOMSourceDetail || dataBOMSourceDetail.length === 0) return "Data BOMSourcingDetail is empty!";
+    const postDATABOMSourcingDetail = await FX_BOMSourcingDetail.bulkCreate(dataBOMSourceDetail);
+    if(!postDATABOMSourcingDetail) return console.log("Action: Insert, Status: Failed, Table: BOM Sourcing Detail");
+    return console.log("Action: Insert, Status: Success, Table: BOM Sourcing Detail");
   } catch(err){
     return console.log(err);
   }
