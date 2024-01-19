@@ -1,7 +1,7 @@
 import { QueryTypes } from "sequelize";
 import { dbAudit, dbFXMain } from "../config/database.js";
-import { queryGetFXFinishProd, queryGetFXGRNDetail, queryGetFinishProd } from "../models/modelsAuditTrial.js";
-import { FX_FinishingProdDetail, FX_GRNDetail} from "../models/modelsMainDb.js";
+import { queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGRNDetail, queryGetFinishProd } from "../models/modelsAuditTrial.js";
+import { FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GRNDetail} from "../models/modelsMainDb.js";
 
 export async function cronFsProdDetail() {
   try {
@@ -41,5 +41,17 @@ export async function cronGRNDetail() {
     return console.log("Berhasil post GRN Detail");
   } catch(err){
     return console.log(err);
+  }
+}
+
+export async function cronCustomerShipmentDetail() {
+  try{
+      const dataCustShipmDetail = await dbFXMain.query(queryGetFXCustomerShipmentDetail, {type: QueryTypes.SELECT});
+      if(!dataCustShipmDetail || dataCustShipmDetail.length === 0) return "Data Customer Shipment Detail is empty!";
+      const postDataCustShipDet = await FX_CustomerShipmentDetail.bulkCreate(dataCustShipmDetail);
+      if(!postDataCustShipDet) return console.log("Failed to insert Customer Shipment Detail data!");
+      return console.log("Success Post Data of Customer Shipment Detail!");
+  } catch(err){
+    return console.log(err)
   }
 }
