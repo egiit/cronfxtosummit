@@ -22,13 +22,16 @@ const runDb = async () => {
 };
 runDb();
 
+cron.schedule(" 0 4 * * *", () => {
+  console.log("Synchronize Data CustomerOrderDetail");
+  cronCustomerOrderDetail();
+});
 
-cron.schedule(" 1 4 * * *", () => {
+cron.schedule(" 20 4 * * *", () => {
   console.log("running get data");
   cronFsProdDetail();
-  cronGRNDetail();
   cronCustomerShipmentDetail();
-  cronCustomerOrderDetail();
+  cronGRNDetail();
   cronGINDetail();
   cronBOMSourcingDetail();
   cronLTNListing();
