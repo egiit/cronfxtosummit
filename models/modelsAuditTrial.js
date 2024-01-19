@@ -17,3 +17,5 @@ export const queryGetLTNListing = `SELECT * FROM LTNListing WHERE CreatedDate = 
 export const queryGetMRPListing = `SELECT * FROM MRPListing_MRPDetail WHERE CONVERT(MOCreatedDate, GETDATE()) = DATEADD(DAY,-1,GETDATE()) `;
 
 export const queryGetMRRListing = `SELECT * FROM MRRListing WHERE PostedDate = DATEADD(DAY,-1,GETDATE()) `;
+
+export const queryGetMRSListing = `SELECT * FROM MRSListing WHERE CONVERT(CreatedDate, GETDATE()) = DATEADD(DAY,-1,GETDATE()) `;

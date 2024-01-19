@@ -1805,6 +1805,198 @@ export const FX_MRRListing = dbSummitMain.define('FX_MRRListing', {
   timestamps: false,
 });
 
+export const FX_MRSListing = dbSummitMain.define('FX_MRSListing', {
+  StockHoldingCompany: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  MRSID: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  Status: {
+    type: DataTypes.STRING(6),
+    defaultValue: null
+  },
+  CreatedDate: {
+    type: DataTypes.DATE,
+    defaultValue: null
+  },
+  CreatedID: {
+    type: DataTypes.STRING(20),
+    defaultValue: null
+  },
+  GINID: {
+    type: DataTypes.CHAR(10),
+    defaultValue: null
+  },
+  IssuedDate: {
+    type: DataTypes.DATE,
+    defaultValue: null
+  },
+  IssuedSite: {
+    type: DataTypes.CHAR(10),
+    defaultValue: null
+  },
+  IssuedDepartment: {
+    type: DataTypes.STRING(50),
+    defaultValue: null
+  },
+  MaterialReceivedID: {
+    type: DataTypes.CHAR(10),
+    defaultValue: null
+  },
+  BOMPOID: {
+    type: DataTypes.CHAR(10),
+    defaultValue: null
+  },
+  ItemGroupCode: {
+    type: DataTypes.CHAR(2),
+    defaultValue: null
+  },
+  ItemType: {
+    type: DataTypes.STRING(103),
+    defaultValue: null
+  },
+  ItemCategory: {
+    type: DataTypes.STRING(105),
+    defaultValue: null
+  },
+  ItemID: {
+    type: DataTypes.CHAR(10),
+    defaultValue: null
+  },
+  ItemDescription: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  ItemDimensionID: {
+    type: DataTypes.STRING(5),
+    defaultValue: null
+  },
+  ColorDescription: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  SizeDescription: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  SerialNo: {
+    type: DataTypes.STRING(20),
+    defaultValue: null
+  },
+  OriginWHID: {
+    type: DataTypes.CHAR(10),
+    defaultValue: null
+  },
+  OriginWarehouse: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  OriginWHLocation: {
+    type: DataTypes.STRING(302),
+    defaultValue: null
+  },
+  ReturnedWHID: {
+    type: DataTypes.CHAR(10),
+    defaultValue: null
+  },
+  ReturnedWarehouse: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  ReturnedWHLocation: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  ReturnedWHSite: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  ReturnedWHDepartment: {
+    type: DataTypes.STRING(50),
+    defaultValue: null
+  },
+  ItemStatus: {
+    type: DataTypes.STRING(103),
+    defaultValue: null
+  },
+  ItemQuality: {
+    type: DataTypes.STRING(103),
+    defaultValue: null
+  },
+  PurchaseUOM: {
+    type: DataTypes.CHAR(10),
+    defaultValue: null
+  },
+  IssuedQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    defaultValue: null
+  },
+  ReturnedQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    defaultValue: null
+  },
+  Customer: {
+    type: DataTypes.STRING(20),
+    defaultValue: null
+  },
+  CustomerSeason: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  CustomerDivision: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  CustomerByPlan: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  CustomerProgram: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  OrderTypeCode: {
+    type: DataTypes.CHAR(3),
+    defaultValue: null
+  },
+  OrderID: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  OrderDescription: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  OrderReferenceNo: {
+    type: DataTypes.STRING(50),
+    defaultValue: null
+  },
+  Remark: {
+    type: DataTypes.TEXT,
+    defaultValue: null
+  },
+  CustomDocumentType: {
+    type: DataTypes.STRING(10),
+    defaultValue: null
+  },
+  CustomDocNo: {
+    type: DataTypes.STRING(200),
+    defaultValue: null
+  },
+  CustomDocDate: {
+    type: DataTypes.DATE,
+    defaultValue: null
+  }
+}, {
+  tableName: 'FX_MRSListing',
+  engine: 'InnoDB',
+  charset: 'utf8mb4',
+  collate: 'utf8mb4_general_ci',
+  timestamps: false
+});
 
 
 

@@ -1,7 +1,7 @@
 import { QueryTypes } from "sequelize";
 import { dbAudit, dbFXMain, dbSummitMain } from "../config/database.js";
-import { queryGetBOMSourcingDetail, queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd, queryGetLTNListing, queryGetMRPListing, queryGetMRRListing } from "../models/modelsAuditTrial.js";
-import { FX_BOMSourcingDetail, FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail, FX_LTNListing, FX_MRPListing, FX_MRRListing} from "../models/modelsMainDb.js";
+import { queryGetBOMSourcingDetail, queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd, queryGetLTNListing, queryGetMRPListing, queryGetMRRListing, queryGetMRSListing } from "../models/modelsAuditTrial.js";
+import { FX_BOMSourcingDetail, FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail, FX_LTNListing, FX_MRPListing, FX_MRRListing, FX_MRSListing} from "../models/modelsMainDb.js";
 
 export async function cronFsProdDetail() {
   try {
@@ -122,6 +122,18 @@ export async function cronMRRListing(){
     const postDataMRRListing = await FX_MRRListing.bulkCreate(dataMRRListing);
     if(!postDataMRRListing) return console.log("Action: Insert, Status: Failed, Table: MRR Listing");
     return console.log("Action: Insert, Status: Success, Table: MRR Listing");
+  } catch(err){
+    return console.log(err);
+  }
+}
+
+export async function cronMRSListing(){
+  try{
+    const dataMRSListing = await dbFXMain.query(queryGetMRSListing, {type: QueryTypes.SELECT});
+    if(!dataMRSListing || dataMRSListing.length === 0) return "Data MRS Listing is empty";
+    const postDataMRSListing = await FX_MRSListing.bulkCreate(dataMRSListing);
+    if(!postDataMRSListing) return console.log("Action: Insert, Status: Failed, Table: MRS Listing");
+    return console.log("Action: Insert, Status: Success, Table: MRS Listing");
   } catch(err){
     return console.log(err);
   }
