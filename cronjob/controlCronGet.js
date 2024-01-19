@@ -1,7 +1,7 @@
 import { QueryTypes } from "sequelize";
 import { dbAudit, dbFXMain, dbSummitMain } from "../config/database.js";
-import { queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGRNDetail, queryGetFinishProd } from "../models/modelsAuditTrial.js";
-import { FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GRNDetail} from "../models/modelsMainDb.js";
+import { queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd } from "../models/modelsAuditTrial.js";
+import { FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail} from "../models/modelsMainDb.js";
 
 export async function cronFsProdDetail() {
   try {
@@ -62,6 +62,18 @@ export async function cronCustomerOrderDetail(){
     const dataCustOrderDetail = await dbFXMain.query(queryGetFXCustOrderDetail, {type: QueryTypes.SELECT});
     const postDataCustOrderDetail = await FX_CustomerOrderDetail.bulkCreate(dataCustOrderDetail);
     return console.log("Action: Insert, Status: Success, Table: Customer Order Detail");
+  } catch(err){
+    return console.log(err);
+  }
+}
+
+export async function cronGINDetail(){
+  try{
+    const dataGINDetail = await dbFXMain.query(queryGetFXGINDetail, {type: QueryTypes.SELECT});
+    if(!dataGINDetail || dataGINDetail.length === 0) return "Data GIN Detail is empty!";
+      const postDataGINDetail = await FX_GINDetail.bulkCreate(dataGINDetail);
+      if(!postDataGINDetail) return console.log("Action: Insert, Status: Failed, Table: Customer Order Detail");
+      return console.log("Action: Insert, Status: Success, Table: GIN Detail");
   } catch(err){
     return console.log(err);
   }

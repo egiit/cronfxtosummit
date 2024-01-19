@@ -7,3 +7,5 @@ export const queryGetFXGRNDetail = `SELECT * FROM GRNDetail a WHERE YEAR(a.Poste
 export const queryGetFXCustomerShipmentDetail = `SELECT * FROM CustomerShipmentDetail WHERE ApprovedDate = DATEADD(DAY,-1,GETDATE()) `;
 
 export const queryGetFXCustOrderDetail = `SELECT * FROM CustomerOrderDetail`;
+
+export const queryGetFXGINDetail = `SELECT * FROM GINDetail WHERE PostedDate = DATEADD(DAY,-1,GETDATE()) `;

@@ -814,7 +814,195 @@ export const FX_CustomerOrderDetail = dbSummitMain.define(
   updatedAt: false,
 });
 
+export const FX_GINDetail = dbSummitMain.define('FXGINDetail', {
+  CompanyCode: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  GINID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  CreatedDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  CreatedID: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  GINStatus: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  PostedDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  PostedID: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  IssuedPurpose: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  IssuedSite: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  IssuedDepartment: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  MaterialReceivedID: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  BOMPOID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  ItemGroupCode: {
+    type: DataTypes.CHAR(2),
+    allowNull: true,
+  },
+  ItemType: {
+    type: DataTypes.CHAR(2),
+    allowNull: true,
+  },
+  ItemCategory: {
+    type: DataTypes.CHAR(3),
+    allowNull: true,
+  },
+  ItemID: {
+    type: DataTypes.CHAR(10),
+    allowNull: true,
+  },
+  ItemDescription: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  ItemDimensionID: {
+    type: DataTypes.STRING(5),
+    allowNull: true,
+  },
+  ColorDescription: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  SizeDescription: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  SerialNo: {
+    type: DataTypes.STRING(20),
+    allowNull: true,
+  },
+  SiteCode: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  WHDepartment: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  WHName: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  WHLocation: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  ItemStatus: {
+    type: DataTypes.STRING(150),
+    allowNull: true,
+  },
+  ItemQuality: {
+    type: DataTypes.STRING(150),
+    allowNull: true,
+  },
+  PurchaseUOM: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  IssuedQty: {
+    type: DataTypes.DECIMAL(18, 2),
+    allowNull: true,
+  },
+  PrimaryCurrencyCode: {
+    type: DataTypes.CHAR(3),
+    allowNull: true,
+  },
+  PrimaryCurrencyCost: {
+    type: DataTypes.DECIMAL(18, 6),
+    allowNull: true,
+  },
+  Customer: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  CustomerSeason: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  CustomerDivision: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  CustomerByPlan: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  CustomerProgram: {
+    type: DataTypes.STRING(200),
+    allowNull: true,
+  },
+  OrderTypeCode: {
+    type: DataTypes.STRING(3),
+    allowNull: true,
+  },
+  OrderID: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  OrderDescription: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  OrderReferenceNo: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  Remark: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
+  CustomDocumentType: {
+    type: DataTypes.STRING(10),
+    allowNull: true,
+  },
+  CustomDocNo: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  CustomDocDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+}, {
+  tableName: 'FX_GINDetail',
+  engine: 'InnoDB',
+  charset: 'utf8mb4',
+  collate: 'utf8mb4_general_ci',
+  createdAt: false,
+  updatedAt: false,
+});
+
+
 FX_FinishingProdDetail.removeAttribute("id");
 FX_GRNDetail.removeAttribute("id");
+FX_GINDetail.removeAttribute("id");
 FX_CustomerShipmentDetail.removeAttribute("id");
 FX_CustomerOrderDetail.removeAttribute("id");
