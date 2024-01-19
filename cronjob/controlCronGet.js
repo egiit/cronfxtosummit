@@ -1,7 +1,7 @@
 import { QueryTypes } from "sequelize";
 import { dbAudit, dbFXMain, dbSummitMain } from "../config/database.js";
-import { queryGetBOMSourcingDetail, queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd, queryGetLTNListing, queryGetMRPListing } from "../models/modelsAuditTrial.js";
-import { FX_BOMSourcingDetail, FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail, FX_LTNListing, FX_MRPListing} from "../models/modelsMainDb.js";
+import { queryGetBOMSourcingDetail, queryGetFXCustOrderDetail, queryGetFXCustomerShipmentDetail, queryGetFXFinishProd, queryGetFXGINDetail, queryGetFXGRNDetail, queryGetFinishProd, queryGetLTNListing, queryGetMRPListing, queryGetMRRListing } from "../models/modelsAuditTrial.js";
+import { FX_BOMSourcingDetail, FX_CustomerOrderDetail, FX_CustomerShipmentDetail, FX_FinishingProdDetail, FX_GINDetail, FX_GRNDetail, FX_LTNListing, FX_MRPListing, FX_MRRListing} from "../models/modelsMainDb.js";
 
 export async function cronFsProdDetail() {
   try {
@@ -110,6 +110,18 @@ export async function cronMRPListing(){
     const postDataMRPListing = await FX_MRPListing.bulkCreate(dataMRPListing);
     if(!postDataMRPListing) return console.log("Action: Insert, Status: Failed, Table: MRP Listing");
     return console.log("Action: Insert, Status: Success, Table: MRP Listing");
+  } catch(err){
+    return console.log(err);
+  }
+}
+
+export async function cronMRRListing(){
+  try{
+    const dataMRRListing = await dbFXMain.query(queryGetMRRListing, {type: QueryTypes.SELECT});
+    if(!dataMRRListing || dataMRRListing.length === 0) return "Data MRR Listing is empty";
+    const postDataMRRListing = await FX_MRRListing.bulkCreate(dataMRRListing);
+    if(!postDataMRRListing) return console.log("Action: Insert, Status: Failed, Table: MRR Listing");
+    return console.log("Action: Insert, Status: Success, Table: MRR Listing");
   } catch(err){
     return console.log(err);
   }
