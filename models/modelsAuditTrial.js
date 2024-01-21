@@ -12,14 +12,14 @@ export const queryGetFXGINDetail = `SELECT * FROM GINDetail WHERE PostedDate = D
 
 export const queryGetBOMSourcingDetail = `SELECT * FROM BOMSourcingDetail WHERE (CreatedDate = DATEADD(DAY,-1,GETDATE())) OR (ModifiedDate  < DATEADD(DAY,-1,GETDATE()))`;
 
-export const queryGetLTNListing = `SELECT * FROM LTNListing WHERE CreatedDate = DATEADD(DAY,-1,GETDATE()) `;
+export const queryGetLTNListing = `SELECT * FROM LTNListing WHERE CONVERT(DATE, CreatedDate) = DATEADD(DAY,-1,GETDATE()) `;
 
-export const queryGetMRPListing = `SELECT * FROM MRPListing_MRPDetail WHERE CONVERT(MOCreatedDate, GETDATE()) = DATEADD(DAY,-1,GETDATE()) `;
+export const queryGetMRPListing = `SELECT * FROM MRPListing_MRPDetail WHERE CONVERT(DATE, MOCreatedDate,) = DATEADD(DAY,-1,GETDATE()) `;
 
-export const queryGetMRRListing = `SELECT * FROM MRRListing WHERE PostedDate = DATEADD(DAY,-1,GETDATE()) `;
+export const queryGetMRRListing = `SELECT * FROM MRRListing WHERE CONVERT(DATE, PostedDate) = DATEADD(DAY,-1,GETDATE()) `;
 
-export const queryGetMRSListing = `SELECT * FROM MRSListing WHERE CONVERT(CreatedDate, GETDATE()) = DATEADD(DAY,-1,GETDATE()) `;
+export const queryGetMRSListing = `SELECT * FROM MRSListing WHERE CONVERT(DATE, CreatedDate) = DATEADD(DAY,-1,GETDATE()) `;
 
-export const queryGetMRVListing = `SELECT * FROM MRVListing WHERE CONVERT(CreatedDate, GETDATE()) = DATEADD(DAY,-1,GETDATE()) `;
+export const queryGetMRVListing = `SELECT * FROM MRVListing WHERE CONVERT(DATE, CreatedDate) = DATEADD(DAY,-1,GETDATE()) `;
 
-export const queryGetMSDListing = `SELECT * FROM MRVListing WHERE CONVERT(StatusDate, GETDATE()) = DATEADD(DAY,-1,GETDATE()) `;
+export const queryGetMSDListing = `SELECT * FROM MSDListing WHERE CONVERT(DATE, StatusDate) = DATEADD(DAY,-1,GETDATE()) `;
