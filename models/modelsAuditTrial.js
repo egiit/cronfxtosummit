@@ -14,7 +14,7 @@ export const queryGetBOMSourcingDetail = `SELECT * FROM BOMSourcingDetail WHERE 
 
 export const queryGetLTNListing = `SELECT * FROM LTNListing WHERE CONVERT(DATE, CreatedDate) = DATEADD(DAY,-1,GETDATE()) `;
 
-export const queryGetMRPListing = `SELECT * FROM MRPListing_MRPDetail WHERE CONVERT(DATE, MOCreatedDate,) = DATEADD(DAY,-1,GETDATE()) `;
+export const queryGetMRPListing = `SELECT * FROM MRPListing_MRPDetail WHERE CONVERT(DATE, MOCreatedDate) = DATEADD(DAY,-1,GETDATE()) `;
 
 export const queryGetMRRListing = `SELECT * FROM MRRListing WHERE CONVERT(DATE, PostedDate) = DATEADD(DAY,-1,GETDATE()) `;
 
