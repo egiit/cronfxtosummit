@@ -22,24 +22,69 @@ const runDb = async () => {
 };
 runDb();
 
-cron.schedule(" 0 4 * * *", () => {
-  console.log("Synchronize Data CustomerOrderDetail");
+cron.schedule("0 4 * * *", () => {
   cronCustomerOrderDetail();
+  console.log("Synchronize Data Customer Order Detail...");
 });
 
-cron.schedule(" 20 4 * * *", () => {
-  console.log("running get data");
+cron.schedule("10 4 * * *", () => {
   cronFsProdDetail();
-  cronCustomerShipmentDetail();
+  console.log("Synchronize Data Finishing Production Detail");
+});
+
+cron.schedule("20 4 * * *", () => {
+  cronCustomerShipmentDetail();  
+  console.log("Synchronize Data Customer Shipment Detail");
+});
+
+cron.schedule("30 4 * * *", () => {
   cronGRNDetail();
+  console.log("Synchronize Data GRN Detail");
+});
+
+cron.schedule("40 4 * * *", () => {
   cronGINDetail();
+  console.log("Synchronize Data GRN Detail");
+});
+
+cron.schedule("50 4 * * *", () => {
   cronBOMSourcingDetail();
+  console.log("Synchronize Data BOM Sourcing Detail");
+});
+
+cron.schedule("0 5 * * *", () => {
   cronLTNListing();
+  console.log("Synchronize Data LTN Listing Detail");
+});
+
+cron.schedule("10 5 * * *", () => {
+  cronLTNListing();
+  console.log("Synchronize Data LTN Listing Detail");
+});
+
+cron.schedule("20 5 * * *", () => {
   cronMRPListing();
+  console.log("Synchronize Data MRP Listing Detail");
+});
+
+cron.schedule("30 5 * * *", () => {
   cronMRRListing();
+  console.log("Synchronize Data MRR Listing Detail");
+});
+
+cron.schedule("40 5 * * *", () => {
   cronMRSListing();
+  console.log("Synchronize Data MRS Listing Detail");
+});
+
+cron.schedule("50 5 * * *", () => {
   cronMRVListing();
+  console.log("Synchronize Data MRV Listing Detail");
+});
+
+cron.schedule("60 5 * * *", () => {
   cronMSDListing();
+  console.log("Synchronize Data MSD Listing Detail");
 });
 
 
