@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import { dbAudit, dbSummitMain } from "../config/database.js";
+import { dbSummitMain } from "../config/database.js";
 
 export const FX_FinishingProdDetail = dbSummitMain.define(
   "FX_FinishingProdDetail",

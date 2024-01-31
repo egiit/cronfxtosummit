@@ -1,5 +1,5 @@
 import { QueryTypes } from "sequelize";
-import { dbAudit, dbFXMain, dbSummitMain } from "../config/database.js";
+import { dbFXMain, dbSummitMain } from "../config/database.js";
 import {
   queryGetBOMSourcingDetail,
   queryGetFXCustOrderDetail,
@@ -97,10 +97,17 @@ export async function cronCustomerOrderDetail() {
 export async function cronGINDetail() {
   try {
     const dataGINDetail = await dbFXMain.query(queryGetFXGINDetail, { type: QueryTypes.SELECT });
-    if (!dataGINDetail || dataGINDetail.length === 0) return "Data GIN Detail is empty!";
-    const postDataGINDetail = await FX_GINDetail.bulkCreate(dataGINDetail);
-    if (!postDataGINDetail) return console.log("Action: Insert, Status: Failed, Table: Customer Order Detail");
-    return console.log("Action: Insert, Status: Success, Table: GIN Detail");
+    //console.log("Fetching FX GIN Data: " + dataGINDetail.length);
+    if (!dataGINDetail || dataGINDetail.length == 0) {
+      return "Data GIN Detail is empty!";
+    } else {
+      const postDataGINDetail = await FX_GINDetail.bulkCreate(dataGINDetail);
+      if (!postDataGINDetail){
+        return console.log("Action: Insert, Status: Failed, Table: Customer Order Detail");
+      } else {
+        return console.log("Action: Insert, Status: Success, Table: GIN Detail");
+      }
+    }
   } catch (err) {
     return console.log(err);
   }
