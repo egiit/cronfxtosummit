@@ -49,7 +49,7 @@ export const dbFXMain = new Sequelize(
     timezone: "+07:00",
     dialectOptions: {
       timezone: "local",
-      options: { encrypt: true }
+      options: { encrypt: false }
     },
   }
 );

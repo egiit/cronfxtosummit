@@ -814,7 +814,7 @@ export const FX_CustomerOrderDetail = dbSummitMain.define(
   updatedAt: false,
 });
 
-export const FX_GINDetail = dbSummitMain.define('FXGINDetail', {
+export const FX_GINDetail = dbSummitMain.define('FX_GINDetail', {
   CompanyCode: {
     type: DataTypes.STRING(10),
     allowNull: true,
@@ -1831,7 +1831,7 @@ export const FX_MRSListing = dbSummitMain.define('FX_MRSListing', {
     defaultValue: null
   },
   IssuedDate: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     defaultValue: null
   },
   IssuedSite: {

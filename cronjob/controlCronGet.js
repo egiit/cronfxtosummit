@@ -1,4 +1,5 @@
-import { QueryTypes } from "sequelize";
+import { QueryTypes, Op } from "sequelize";
+import moment from "moment";
 import { dbFXMain, dbSummitMain } from "../config/database.js";
 import {
   queryGetBOMSourcingDetail,
@@ -29,6 +30,98 @@ import {
   FX_MRVListing,
   FX_MSDListing
 } from "../models/modelsMainDb.js";
+import { GRNDetail, GINDetail, MRSListing, MRVListing, MRRListing, LTNListing } from "../models/modelsFXDb.js";
+
+
+const startDate     = moment().subtract(1, 'd').format('YYYY-MM-DD');
+const endDate       = moment().format('YYYY-MM-DD');
+const yesterday     = startDate;    
+
+// GRNDetail
+export async function cronGRNDetail() {
+  try {
+    const dataGRNetail  = await GRNDetail.findAll({ where: { InhouseDate: yesterday } });
+    if (!dataGRNetail || dataGRNetail.length === 0) return console.log(`GRNDetail ${yesterday} ==> DATA IS EMPTY`);
+    const postDataGRNDetail = await FX_GRNDetail.bulkCreate(dataGRNetail);
+    if (!postDataGRNDetail) return console.log(`GRNDetail ${startDate} - ${endDate} ==> FAIL TO INSERT DATA`);
+    return console.log(`GRNDetail ${startDate} - ${endDate} ==> SUCCESS INSERT DATA`);
+  } catch (err) {
+    return console.log(err);
+  }
+}
+
+// GINDetail
+export async function cronGINDetail() {
+  try {
+    const dataGINDetail  = await GINDetail.findAll({ where: { PostedDate: yesterday } });
+    if (!dataGINDetail || dataGINDetail.length === 0) return console.log(`GINDetail ${yesterday} ==> DATA IS EMPTY`);
+    const postDataGINDetail = await FX_GINDetail.bulkCreate(dataGINDetail);
+    if (!postDataGINDetail) return console.log(`GINDetail ${yesterday} ==> FAIL TO INSERT DATA`);
+    return console.log(`GINDetail ${yesterday} ==> SUCCESS INSERT DATA`);
+  } catch (err) {
+    return console.log(err);
+  }
+}
+
+// MRS Listing
+export async function cronMRSListing() {
+  try {
+    const dataMRSListing  = await MRSListing.findAll({ where: { IssuedDate: yesterday } });
+    if (!dataMRSListing || dataMRSListing.length === 0) return console.log(`MRSListing ${yesterday} ==> DATA IS EMPTY`);
+    const postDataMRSListing = await FX_MRSListing.bulkCreate(dataMRSListing);
+    if (!postDataMRSListing) return console.log(`MRSListing ${yesterday} ==> FAIL TO INSERT DATA`);
+    return console.log(`MRSListing ${yesterday} ==> SUCCESS INSERT DATA`);
+  } catch (err) {
+    return console.log(err);
+  }
+}
+
+// MRV Listing
+export async function cronMRVListing() {
+  try {
+    const dataMRVListing = await MRVListing.findAll({ where: { CreatedDate: yesterday } });
+    if (!dataMRVListing || dataMRVListing.length === 0) return console.log(`MRVListing ${yesterday} ==> DATA IS EMPTY`);
+    const postDataMRVListing = await FX_MRVListing.bulkCreate(dataMRVListing);
+    if (!postDataMRVListing) return console.log(`MRVListing ${yesterday} ==> FAIL TO INSERT DATA`);
+    return console.log(`MRVListing ${yesterday} ==> SUCCESS INSERT DATA`);
+  } catch (err) {
+    return console.log(err);
+  }
+}
+
+// MRR Listing
+export async function cronMRRListing() {
+  try {
+    const dataMRRListing = await MRRListing.findAll({ where: { InhouseDate: yesterday } });
+    if (!dataMRRListing || dataMRRListing.length === 0) return console.log(`MRRListing ${yesterday} ==> DATA IS EMPTY`);
+    const postDataMRRListing = await FX_MRRListing.bulkCreate(dataMRRListing);
+    if (!postDataMRRListing) return console.log(`MRRListing ${yesterday} ==> FAIL TO INSERT DATA`);
+    return console.log(`MRRListing ${yesterday} ==> SUCCESS INSERT DATA`);
+  } catch (err) {
+    return console.log(err);
+  }
+}
+
+// LTN Listing
+export async function cronLTNListing() {
+  try {
+    const dataLTNListing = await LTNListing.findAll({ where: { CreatedDate: yesterday } });
+    if (!dataLTNListing || dataLTNListing.length === 0) return console.log(`LTNListing ${yesterday} ==> DATA IS EMPTY`);
+    const postDataLTNListing = await FX_LTNListing.bulkCreate(dataLTNListing);
+    if (!postDataLTNListing) return console.log(`LTNListing ${yesterday} ==> FAIL TO INSERT DATA`);
+    return console.log(`LTNListing ${yesterday} ==> SUCCESS INSERT DATA`);
+  } catch (err) {
+    return console.log(err);
+  }
+}
+
+
+
+
+
+
+
+
 
 export async function cronFsProdDetail() {
   try {
@@ -53,23 +146,7 @@ export async function cronFsProdDetail() {
   }
 }
 
-export async function cronGRNDetail() {
-  try {
-    const dataGRNetail = await dbFXMain.query(queryGetFXGRNDetail, { type: QueryTypes.SELECT });
-    //console.log(dataGRNetail);
-    if (!dataGRNetail || dataGRNetail.length === 0)
-      return "Tidak ada data atau terdapat error saat mengambil data Finishing Prod Detail";
-    //return console.log("Berhasil post GRN Detail");
-    const postDataGRN = await FX_GRNDetail.bulkCreate(
-      dataGRNetail
-    );
-    if (!postDataGRN) return console.log("terdapat error saat insert data");
 
-    return console.log("Berhasil post GRN Detail");
-  } catch (err) {
-    return console.log(err);
-  }
-}
 
 export async function cronCustomerShipmentDetail() {
   try {
@@ -94,24 +171,6 @@ export async function cronCustomerOrderDetail() {
   }
 }
 
-export async function cronGINDetail() {
-  try {
-    const dataGINDetail = await dbFXMain.query(queryGetFXGINDetail, { type: QueryTypes.SELECT });
-    //console.log("Fetching FX GIN Data: " + dataGINDetail.length);
-    if (!dataGINDetail || dataGINDetail.length == 0) {
-      return "Data GIN Detail is empty!";
-    } else {
-      const postDataGINDetail = await FX_GINDetail.bulkCreate(dataGINDetail);
-      if (!postDataGINDetail){
-        return console.log("Action: Insert, Status: Failed, Table: Customer Order Detail");
-      } else {
-        return console.log("Action: Insert, Status: Success, Table: GIN Detail");
-      }
-    }
-  } catch (err) {
-    return console.log(err);
-  }
-}
 
 export async function cronBOMSourcingDetail() {
   try {
@@ -125,17 +184,6 @@ export async function cronBOMSourcingDetail() {
   }
 }
 
-export async function cronLTNListing() {
-  try {
-    const dataLTNListing = await dbFXMain.query(queryGetLTNListing, { type: QueryTypes.SELECT });
-    if (!dataLTNListing || dataLTNListing.length === 0) return "Data LTN Listing is empty!";
-    const postDataLTNListing = await FX_LTNListing.bulkCreate(dataLTNListing);
-    if (!postDataLTNListing) return console.log("Action: Insert, Status: Failed, Table: LTN Listing");
-    return console.log("Action: Insert, Status: Success, Table: LTN Listing");
-  } catch (err) {
-    return console.log(err);
-  }
-}
 
 export async function cronMRPListing() {
   try {
@@ -149,41 +197,8 @@ export async function cronMRPListing() {
   }
 }
 
-export async function cronMRRListing() {
-  try {
-    const dataMRRListing = await dbFXMain.query(queryGetMRRListing, { type: QueryTypes.SELECT });
-    if (!dataMRRListing || dataMRRListing.length === 0) return "Data MRR Listing is empty";
-    const postDataMRRListing = await FX_MRRListing.bulkCreate(dataMRRListing);
-    if (!postDataMRRListing) return console.log("Action: Insert, Status: Failed, Table: MRR Listing");
-    return console.log("Action: Insert, Status: Success, Table: MRR Listing");
-  } catch (err) {
-    return console.log(err);
-  }
-}
 
-export async function cronMRSListing() {
-  try {
-    const dataMRSListing = await dbFXMain.query(queryGetMRSListing, { type: QueryTypes.SELECT });
-    if (!dataMRSListing || dataMRSListing.length === 0) return "Data MRS Listing is empty";
-    const postDataMRSListing = await FX_MRSListing.bulkCreate(dataMRSListing);
-    if (!postDataMRSListing) return console.log("Action: Insert, Status: Failed, Table: MRS Listing");
-    return console.log("Action: Insert, Status: Success, Table: MRS Listing");
-  } catch (err) {
-    return console.log(err);
-  }
-}
 
-export async function cronMRVListing() {
-  try {
-    const dataMRVListing = await dbFXMain.query(queryGetMRVListing, { type: QueryTypes.SELECT });
-    if (!dataMRVListing || dataMRVListing.length === 0) return "Data MRV Listing is empty";
-    const postDataMRVListing = await FX_MRVListing.bulkCreate(dataMRVListing);
-    if (!postDataMRVListing) return console.log("Action: Insert, Status: Failed, Table: MRV Listing");
-    return console.log("Action: Insert, Status: Success, Table: MRV Listing");
-  } catch (err) {
-    return console.log(err);
-  }
-}
 
 export async function cronMSDListing() {
   try {

@@ -9,6 +9,8 @@ dotenv.config();
 const PORT = 5112;
 const app = express();
 
+app.listen(PORT, () => console.log(`Server Runing On port : ${PORT}`));
+
 const runDb = async () => {
   try {
     await dbSummitMain.authenticate();
@@ -21,6 +23,14 @@ const runDb = async () => {
 };
 runDb();
 
+
+await cronGRNDetail();
+await cronGINDetail();
+await cronMRSListing();
+await cronMRVListing();
+await cronMRRListing();
+await cronLTNListing();
+/*
 cron.schedule("0 4 * * *", () => {
   cronCustomerOrderDetail();
   console.log("Synchronize Data Customer Order Detail...");
@@ -81,9 +91,9 @@ cron.schedule("50 5 * * *", () => {
   console.log("Synchronize Data MRV Listing Detail");
 });
 
-cron.schedule("60 5 * * *", () => {
+cron.schedule("0 6 * * *", () => {
   cronMSDListing();
   console.log("Synchronize Data MSD Listing Detail");
 });
+*/
 
-app.listen(PORT, () => console.log(`Server Runing On port : ${PORT}`));
