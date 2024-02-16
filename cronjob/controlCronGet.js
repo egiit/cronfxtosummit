@@ -30,7 +30,7 @@ import {
   FX_MRVListing,
   FX_MSDListing
 } from "../models/modelsMainDb.js";
-import { GRNDetail, GINDetail, MRSListing, MRVListing, MRRListing, LTNListing } from "../models/modelsFXDb.js";
+import { GRNDetail, GINDetail, MRSListing, MRVListing, MRRListing, LTNListing, MSDListing } from "../models/modelsFXDb.js";
 
 
 const startDate     = moment().subtract(1, 'd').format('YYYY-MM-DD');
@@ -114,6 +114,20 @@ export async function cronLTNListing() {
     return console.log(err);
   }
 }
+
+// MSD Listing
+export async function cronMSDListing() {
+  try {
+    const dataMSDListing = await MSDListing.findAll({ where: { StatusDate: yesterday } });
+    if (!dataMSDListing || dataMSDListing.length === 0) return console.log(`MSDListing ${yesterday} ==> DATA IS EMPTY`);
+    const postDataMSDListing = await FX_MSDListing.bulkCreate(dataMSDListing);
+    if (!postDataMSDListing) return console.log(`MSDListing ${yesterday} ==> FAIL TO INSERT DATA`);
+    return console.log(`MSDListing ${yesterday} ==> SUCCESS INSERT DATA`);
+  } catch (err) {
+    return console.log(err);
+  }
+}
+
 
 
 
@@ -200,14 +214,3 @@ export async function cronMRPListing() {
 
 
 
-export async function cronMSDListing() {
-  try {
-    const dataMSDListing = await dbFXMain.query(queryGetMSDListing, { type: QueryTypes.SELECT });
-    if (!dataMSDListing || dataMSDListing.length === 0) return "Data MRV Listing is empty";
-    const postDataMSDListing = await FX_MSDListing.bulkCreate(dataMRVListing);
-    if (!postDataMSDListing) return console.log("Action: Insert, Status: Failed, Table: MSD Listing");
-    return console.log("Action: Insert, Status: Success, Table: MSD Listing");
-  } catch (err) {
-    return console.log(err);
-  }
-}

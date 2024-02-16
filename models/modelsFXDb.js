@@ -524,6 +524,56 @@ export const LTNListing = dbFXMain.define(
   }
 );
 
+export const MSDListing = dbFXMain.define(
+  "MSDListing", {
+    StockHoldingCompany: { type: DataTypes.STRING(10), allowNull: true },
+    MSDID: { type: DataTypes.STRING(10), allowNull: true },
+    CreatedDate: { type: DataTypes.DATE, allowNull: true },
+    MSDStatus: { type: DataTypes.STRING(8), allowNull: true },
+    StatusDate: { type: DataTypes.DATEONLY, allowNull: true },
+    CreatedID: { type: DataTypes.STRING(20), allowNull: true },
+    PostedID: { type: DataTypes.STRING(20), allowNull: true },
+    DeletedID: { type: DataTypes.STRING(20), allowNull: true },
+    MaterialReceivedID: { type: DataTypes.STRING(10), allowNull: true },
+    BOMPOID: { type: DataTypes.STRING(10), allowNull: true },
+    ItemGroupCode: { type: DataTypes.STRING(2), allowNull: true },
+    ItemType: { type: DataTypes.STRING(103), allowNull: true },
+    ItemCategory: { type: DataTypes.STRING(105), allowNull: true },
+    ItemID: { type: DataTypes.STRING(10), allowNull: true },
+    ItemDescription: { type: DataTypes.STRING(302), allowNull: true },
+    ItemDimensionID: { type: DataTypes.STRING(5), allowNull: true },
+    ColorDescription: { type: DataTypes.STRING(200), allowNull: true },
+    SizeDescription: { type: DataTypes.STRING(200), allowNull: true },
+    SerialNo: { type: DataTypes.STRING(20), allowNull: true },
+    SiteCode: { type: DataTypes.STRING(10), allowNull: true },
+    WHDepartment: { type: DataTypes.STRING(50), allowNull: true },
+    Warehouse: { type: DataTypes.STRING(200), allowNull: true },
+    WHLocation: { type: DataTypes.STRING(302), allowNull: true },
+    ItemStatus: { type: DataTypes.STRING(103), allowNull: true },
+    ItemQuality: { type: DataTypes.STRING(103), allowNull: true },
+    PurchaseUOM: { type: DataTypes.STRING(10), allowNull: true },
+    DiscontinueQty: { type: DataTypes.NUMERIC(18, 2), allowNull: true },
+    PrimaryCurrencyCode: { type: DataTypes.STRING(3), allowNull: true },
+    PrimaryCurrencyCost: { type: DataTypes.NUMERIC(18, 6), allowNull: true },
+    DiscontinuedValue: { type: DataTypes.NUMERIC(37, 8), allowNull: true },
+    Customer: { type: DataTypes.STRING(20), allowNull: true },
+    CustomerSeason: { type: DataTypes.STRING(200), allowNull: true },
+    CustomerDivision: { type: DataTypes.STRING(10), allowNull: true },
+    CustomerByPlan: { type: DataTypes.STRING(200), allowNull: true },
+    CustomerProgram: { type: DataTypes.STRING(200), allowNull: true },
+    OrderTypeCode: { type: DataTypes.STRING(3), allowNull: true },
+    OrderID: { type: DataTypes.STRING(10), allowNull: true },
+    OrderDescription: { type: DataTypes.STRING(200), allowNull: true },
+    OrderReferenceNo: { type: DataTypes.STRING(50), allowNull: true },
+    Remark: { type: DataTypes.STRING(500), allowNull: true }
+  },
+  {
+  tableName: "MSDListing",
+  createdAt: false,
+  updatedAt: false,
+  }
+);
+
 
 
 
@@ -627,4 +677,4 @@ export const FinishingProdDetail = dbFXMain.define(
   MRVListing.removeAttribute("id");
   MRRListing.removeAttribute("id");
   LTNListing.removeAttribute("id");
-  
+  MSDListing.removeAttribute("id");
