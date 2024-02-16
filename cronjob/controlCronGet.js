@@ -30,7 +30,7 @@ import {
   FX_MRVListing,
   FX_MSDListing
 } from "../models/modelsMainDb.js";
-import { GRNDetail, GINDetail, MRSListing, MRVListing, MRRListing, LTNListing, MSDListing, FinishingProdDetail } from "../models/modelsFXDb.js";
+import { GRNDetail, GINDetail, MRSListing, MRVListing, MRRListing, LTNListing, MSDListing, FinishingProdDetail, CustomerShipmentDetail } from "../models/modelsFXDb.js";
 
 
 const startDate     = moment().subtract(1, 'd').format('YYYY-MM-DD');
@@ -141,23 +141,14 @@ export async function cronFsProdDetail() {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
+// Customer Shipment Detail
 export async function cronCustomerShipmentDetail() {
   try {
-    const dataCustShipmDetail = await dbFXMain.query(queryGetFXCustomerShipmentDetail, { type: QueryTypes.SELECT });
-    if (!dataCustShipmDetail || dataCustShipmDetail.length === 0) return "Data Customer Shipment Detail is empty!";
-    const postDataCustShipDet = await FX_CustomerShipmentDetail.bulkCreate(dataCustShipmDetail);
-    if (!postDataCustShipDet) return console.log("Failed to insert Customer Shipment Detail data!");
-    return console.log("Success Post Data of Customer Shipment Detail!");
+    const dataCPIListing = await CustomerShipmentDetail.findAll({ where: { ApprovedDate: yesterday } });
+    if (!dataCPIListing || dataCPIListing.length === 0) return console.log(`CPIListing ${yesterday} ==> DATA IS EMPTY`);
+    const postDataCPIListing = await FX_CustomerShipmentDetail.bulkCreate(dataCPIListing);
+    if (!postDataCPIListing) return console.log(`CPIListing ${yesterday} ==> FAIL TO INSERT DATA`);
+    return console.log(`CPIListing ${yesterday} ==> SUCCESS INSERT DATA`);
   } catch (err) {
     return console.log(err)
   }

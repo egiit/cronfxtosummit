@@ -661,14 +661,97 @@ export const FinishingProdDetail = dbFXMain.define(
     }
   );
   
+  export const CustomerShipmentDetail = dbFXMain.define(
+    "CustomerShipmentDetail",
+    {
+      CompanyCode: { type: DataTypes.STRING(5), allowNull: true },
+      CustomerPKSID: { type: DataTypes.STRING(10), allowNull: true },
+      CustomerPKSNo: { type: DataTypes.STRING(100), allowNull: true },
+      PackingSlipDate: { type: DataTypes.DATE, allowNull: true },
+      CreatedDate: { type: DataTypes.DATE, allowNull: true },
+      CreatedID: { type: DataTypes.STRING(20), allowNull: true },
+      PackingSlipStatus: { type: DataTypes.STRING(20), allowNull: true },
+      ApprovedDate: { type: DataTypes.DATEONLY, allowNull: true },
+      ApprovedID: { type: DataTypes.STRING(20), allowNull: true },
+      PKSQty: { type: DataTypes.INTEGER, allowNull: true },
+      UOMCode: { type: DataTypes.STRING(20), allowNull: true },
+      UnitPrice: { type: DataTypes.NUMERIC(18, 4), allowNull: true },
+      TotalPKSAmount: { type: DataTypes.NUMERIC(18, 4), allowNull: true },
+      CurrencyCode: { type: DataTypes.STRING(20), allowNull: true },
+      OrderPriceType: { type: DataTypes.STRING(20), allowNull: true },
+      ReferenceNote: { type: DataTypes.STRING(500), allowNull: true },
+      CustomerName: { type: DataTypes.STRING(200), allowNull: true },
+      DivisionCode: { type: DataTypes.STRING(20), allowNull: true },
+      SeasonCode: { type: DataTypes.STRING(200), allowNull: true },
+      DeliveryLocation: { type: DataTypes.STRING(200), allowNull: true },
+      CountryID: { type: DataTypes.STRING(20), allowNull: true },
+      ShipmentType: { type: DataTypes.STRING(100), allowNull: true },
+      OrderID: { type: DataTypes.STRING(10), allowNull: true },
+      OrderRefPONo: { type: DataTypes.STRING(50), allowNull: true },
+      OrderPOStyleRef: { type: DataTypes.STRING(200), allowNull: true },
+      MOID: { type: DataTypes.STRING(10), allowNull: true },
+      OrderPOID: { type: DataTypes.STRING(10), allowNull: true },
+      PORefCode: { type: DataTypes.STRING(200), allowNull: true },
+      ProductItemID: { type: DataTypes.STRING(20), allowNull: true },
+      ProductItemCode: { type: DataTypes.STRING(100), allowNull: true },
+      ProductItemDescription: { type: DataTypes.STRING(200), allowNull: true },
+      ProductItemCategoryCode: { type: DataTypes.STRING(200), allowNull: true },
+      FGItemColorCode: { type: DataTypes.STRING(200), allowNull: true },
+      FGItemColorName: { type: DataTypes.STRING(200), allowNull: true },
+      FGSize: { type: DataTypes.STRING(200), allowNull: true },
+      ProductionMonth: { type: DataTypes.STRING(20), allowNull: true },
+      ManufacturingSiteID: { type: DataTypes.STRING(10), allowNull: true },
+      OrderShipPONo: { type: DataTypes.STRING(50), allowNull: true },
+      OrderShipStyleNo: { type: DataTypes.STRING(200), allowNull: true },
+      OrderShipPoID: { type: DataTypes.INTEGER, allowNull: true },
+      ShipPORefCode: { type: DataTypes.STRING(200), allowNull: true },
+      DeliveryTerm: { type: DataTypes.STRING(20), allowNull: true },
+      DeliveryModeCode: { type: DataTypes.STRING(20), allowNull: true },
+      PackingMethodCode: { type: DataTypes.STRING(20), allowNull: true },
+      POConfirmedDate: { type: DataTypes.DATE, allowNull: true },
+      POExpiryDate: { type: DataTypes.DATE, allowNull: true },
+      PODeliveryDate: { type: DataTypes.DATE, allowNull: true },
+      PlanBLDate: { type: DataTypes.DATE, allowNull: true },
+      PlanExfactoryDate: { type: DataTypes.DATE, allowNull: true },
+      ShipmentDetailCompletion: { type: DataTypes.STRING(20), allowNull: true },
+      ShipmentConfirmedDate: { type: DataTypes.DATE, allowNull: true },
+      GWKG: { type: DataTypes.NUMERIC(18, 2), allowNull: true },
+      NWKG: { type: DataTypes.NUMERIC(18, 2), allowNull: true },
+      CustomDocNo: { type: DataTypes.STRING(10), allowNull: true },
+      CustomExportRegNo: { type: DataTypes.STRING(200), allowNull: true },
+      CustomsExportRegDate: { type: DataTypes.DATEONLY, allowNull: true },
+      CustomsExportAckNo: { type: DataTypes.STRING(200), allowNull: true },
+      CustomsExportAckDate: { type: DataTypes.DATEONLY, allowNull: true },
+      AJUNo: { type: DataTypes.STRING(200), allowNull: true },
+      ActualExFactoryDate: { type: DataTypes.DATEONLY, allowNull: true },
+      ShipmentDate: { type: DataTypes.DATEONLY, allowNull: true },
+      BLNo: { type: DataTypes.STRING(200), allowNull: true },
+      ASNGTN_InvoiceNo: { type: DataTypes.STRING(200), allowNull: true },
+      DeliveryMode: { type: DataTypes.STRING(3), allowNull: true },
+      CarrierName: { type: DataTypes.STRING(200), allowNull: true },
+      PortofLoading: { type: DataTypes.STRING(200), allowNull: true },
+      PortofDischarge: { type: DataTypes.STRING(200), allowNull: true },
+      FinalDestination: { type: DataTypes.STRING(200), allowNull: true },
+      PaymentTerms: { type: DataTypes.STRING(10), allowNull: true },
+      ShippingTerms: { type: DataTypes.STRING(200), allowNull: true },
+      InvoiceCreation: { type: DataTypes.STRING(20), allowNull: true },
+      InvoiceCreationDate: { type: DataTypes.DATE, allowNull: true }
+    },
+    {
+      tableName: "CustomerShipmentDetail",
+      createdAt: false,
+      updatedAt: false,
+    }
+  );
 
 
 
-  FinishingProdDetail.removeAttribute("id");
-  GRNDetail.removeAttribute("id");
-  GINDetail.removeAttribute("id");
-  MRSListing.removeAttribute("id");
-  MRVListing.removeAttribute("id");
-  MRRListing.removeAttribute("id");
-  LTNListing.removeAttribute("id");
-  MSDListing.removeAttribute("id");
+GRNDetail.removeAttribute("id");
+GINDetail.removeAttribute("id");
+MRSListing.removeAttribute("id");
+MRVListing.removeAttribute("id");
+MRRListing.removeAttribute("id");
+LTNListing.removeAttribute("id");
+MSDListing.removeAttribute("id");
+FinishingProdDetail.removeAttribute("id");
+CustomerShipmentDetail.removeAttribute("id");

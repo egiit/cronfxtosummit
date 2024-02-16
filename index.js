@@ -32,6 +32,7 @@ await cronMRRListing();
 await cronLTNListing();
 await cronMSDListing();
 await cronFsProdDetail();
+await cronCustomerShipmentDetail();
 /*
 cron.schedule("0 4 * * *", () => {
   cronCustomerOrderDetail();
