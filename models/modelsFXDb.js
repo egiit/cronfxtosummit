@@ -574,12 +574,6 @@ export const MSDListing = dbFXMain.define(
   }
 );
 
-
-
-
-
-
-
 export const FinishingProdDetail = dbFXMain.define(
     "FinishingProdDetail",
     {

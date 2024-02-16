@@ -30,7 +30,7 @@ import {
   FX_MRVListing,
   FX_MSDListing
 } from "../models/modelsMainDb.js";
-import { GRNDetail, GINDetail, MRSListing, MRVListing, MRRListing, LTNListing, MSDListing } from "../models/modelsFXDb.js";
+import { GRNDetail, GINDetail, MRSListing, MRVListing, MRRListing, LTNListing, MSDListing, FinishingProdDetail } from "../models/modelsFXDb.js";
 
 
 const startDate     = moment().subtract(1, 'd').format('YYYY-MM-DD');
@@ -128,37 +128,26 @@ export async function cronMSDListing() {
   }
 }
 
-
-
-
-
-
-
-
-
-
+// Finishing Prod Detail
 export async function cronFsProdDetail() {
   try {
-    const finishProdDetail = await dbFXMain.query(queryGetFXFinishProd, {
-      //   replacements: {
-      //     schDate: date,
-      //   },
-      type: QueryTypes.SELECT,
-    });
-    //console.log(finishProdDetail);
-    if (!finishProdDetail || finishProdDetail.length === 0)
-      return "Tidak ada data atau terdapat error saat mengambil data Finishing Prod Detail";
-
-    const postDataFinish = await FX_FinishingProdDetail.bulkCreate(
-      finishProdDetail
-    );
-    if (!postDataFinish) return console.log("terdapat error saat insert data");
-
-    return console.log("Berhasil post Finishing Production Detail");
-  } catch (error) {
-    return console.log(error);
+    const dataFsProdDetail = await FinishingProdDetail.findAll({ where: { PostedDate: yesterday } });
+    if (!dataFsProdDetail || dataFsProdDetail.length === 0) return console.log(`FPDListing ${yesterday} ==> DATA IS EMPTY`);
+    const postDataFsProdDetail = await FX_FinishingProdDetail.bulkCreate(dataFsProdDetail);
+    if (!postDataFsProdDetail) return console.log(`FPDListing ${yesterday} ==> FAIL TO INSERT DATA`);
+    return console.log(`FPDListing ${yesterday} ==> SUCCESS INSERT DATA`);
+  } catch (err) {
+    return console.log(err);
   }
 }
+
+
+
+
+
+
+
+
 
 
 
