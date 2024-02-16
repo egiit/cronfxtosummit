@@ -807,9 +807,6 @@ export const FX_CustomerOrderDetail = dbSummitMain.define(
   },
 }, {
   tableName: 'FX_CustomerOrderDetail',
-  engine: 'InnoDB',
-  charset: 'utf8mb4',
-  collate: 'utf8mb4_general_ci',
   createdAt: false,
   updatedAt: false,
 });

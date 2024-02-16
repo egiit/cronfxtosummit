@@ -23,22 +23,21 @@ const runDb = async () => {
 };
 runDb();
 
+//cronCustomerOrderDetail();
 
-await cronGRNDetail();
-await cronGINDetail();
-await cronMRSListing();
-await cronMRVListing();
-await cronMRRListing();
-await cronLTNListing();
-await cronMSDListing();
-await cronFsProdDetail();
-await cronCustomerShipmentDetail();
-/*
-cron.schedule("0 4 * * *", () => {
-  cronCustomerOrderDetail();
-  console.log("Synchronize Data Customer Order Detail...");
+cron.schedule("0 3 * * *", () => {
+  cronGRNDetail();
+  cronGINDetail();
+  cronMRSListing();
+  cronMRVListing();
+  cronMRRListing();
+  cronLTNListing();
+  cronMSDListing();
+  cronFsProdDetail();
+  cronCustomerShipmentDetail();
 });
 
+/*
 cron.schedule("10 4 * * *", () => {
   cronFsProdDetail();
   console.log("Synchronize Data Finishing Production Detail");

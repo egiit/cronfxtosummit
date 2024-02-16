@@ -30,7 +30,7 @@ import {
   FX_MRVListing,
   FX_MSDListing
 } from "../models/modelsMainDb.js";
-import { GRNDetail, GINDetail, MRSListing, MRVListing, MRRListing, LTNListing, MSDListing, FinishingProdDetail, CustomerShipmentDetail } from "../models/modelsFXDb.js";
+import { GRNDetail, GINDetail, MRSListing, MRVListing, MRRListing, LTNListing, MSDListing, FinishingProdDetail, CustomerShipmentDetail, CustomerOrderDetail } from "../models/modelsFXDb.js";
 
 
 const startDate     = moment().subtract(1, 'd').format('YYYY-MM-DD');
@@ -156,10 +156,14 @@ export async function cronCustomerShipmentDetail() {
 
 export async function cronCustomerOrderDetail() {
   try {
-    const dropCustOrderDet = await FX_CustomerOrderDetail.truncate();
-    const dataCustOrderDetail = await dbFXMain.query(queryGetFXCustOrderDetail, { type: QueryTypes.SELECT });
-    const postDataCustOrderDetail = await FX_CustomerOrderDetail.bulkCreate(dataCustOrderDetail);
-    return console.log("Action: Insert, Status: Success, Table: Customer Order Detail");
+    const dropOrderPVH = await FX_CustomerOrderDetail.destroy({ truncate : true, cascade: false }); // Drop table before insert new data
+    if(!dropOrderPVH) console.log("Drop Order PVH Failed! ");
+    const getOrderPVH = await CustomerOrderDetail.findAll();
+    console.log(getOrderPVH);
+    if(!getOrderPVH) console.log("Get Order PVH Failed!");
+    const postOrderPVH = await FX_CustomerOrderDetail.bulkCreate(getOrderPVH);
+    if(!postOrderPVH) console.log("Post Order PVH Failed!");
+    return console.log("Update Order PVH Success!");
   } catch (err) {
     return console.log(err);
   }

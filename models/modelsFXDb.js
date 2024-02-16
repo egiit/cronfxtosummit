@@ -661,7 +661,7 @@ export const FinishingProdDetail = dbFXMain.define(
     }
   );
   
-  export const CustomerShipmentDetail = dbFXMain.define(
+export const CustomerShipmentDetail = dbFXMain.define(
     "CustomerShipmentDetail",
     {
       CompanyCode: { type: DataTypes.STRING(5), allowNull: true },
@@ -744,6 +744,66 @@ export const FinishingProdDetail = dbFXMain.define(
     }
   );
 
+  export const CustomerOrderDetail = dbFXMain.define(
+    "CustomerOrderDetail",
+    {
+      Mfg_CompanyCode: { type: DataTypes.STRING(10), allowNull: true },
+      OrderPlacementCompany: { type: DataTypes.STRING(10), allowNull: true },
+      OrderType: { type: DataTypes.STRING(3), allowNull: true },
+      OrderID: { type: DataTypes.STRING(10), allowNull: true },
+      OrderRefPONo: { type: DataTypes.STRING(200), allowNull: true },
+      OrderPOStyleRef: { type: DataTypes.STRING(200), allowNull: true },
+      PruductTypeCategory: { type: DataTypes.STRING(100), allowNull: true },
+      ProductItemID: { type: DataTypes.STRING(10), allowNull: true },
+      ProductItemCode: { type: DataTypes.STRING(100), allowNull: true },
+      ProductItemDescription: { type: DataTypes.STRING(200), allowNull: true },
+      ProductAttributeType: { type: DataTypes.STRING(200), allowNull: true },
+      ProductAttributeCategory: { type: DataTypes.STRING(200), allowNull: true },
+      CustomerName: { type: DataTypes.STRING(200), allowNull: true },
+      CustomerBrand: { type: DataTypes.STRING(200), allowNull: true },
+      CustomerOrderSeason: { type: DataTypes.STRING(100), allowNull: true },
+      CustomerProgramName: { type: DataTypes.STRING(200), allowNull: true },
+      BuyPlanName: { type: DataTypes.STRING(100), allowNull: true },
+      ProjectionOrderID: { type: DataTypes.STRING(10), allowNull: true },
+      ProjectionOrderCode: { type: DataTypes.STRING(50), allowNull: true },
+      OrderConfirmedDate: { type: DataTypes.DATE, allowNull: true },
+      OrderUOM: { type: DataTypes.STRING(10), allowNull: true },
+      CurrencyCode: { type: DataTypes.STRING(3), allowNull: true },
+      OrderPOID: { type: DataTypes.STRING(10), allowNull: true },
+      MOID: { type: DataTypes.STRING(10), allowNull: true },
+      StatusName: { type: DataTypes.STRING(100), allowNull: true },
+      PORefCode: { type: DataTypes.STRING(200), allowNull: true },
+      ColorCode: { type: DataTypes.STRING(100), allowNull: true },
+      ColorName: { type: DataTypes.STRING(200), allowNull: true },
+      PODelvieryLcoation: { type: DataTypes.STRING(100), allowNull: true },
+      DelvieryLocationCode: { type: DataTypes.STRING(100), allowNull: true },
+      DelvieryLocationName: { type: DataTypes.STRING(100), allowNull: true },
+      CountryID: { type: DataTypes.STRING(2), allowNull: true },
+      PackingMethodCode: { type: DataTypes.STRING(100), allowNull: true },
+      DelvieryMode: { type: DataTypes.STRING(100), allowNull: true },
+      POConfirmedDate: { type: DataTypes.DATE, allowNull: true },
+      OrginalDeliveryDate: { type: DataTypes.DATE, allowNull: true },
+      RevisedDeliveryDate: { type: DataTypes.DATE, allowNull: true },
+      PlanExfactoryDate: { type: DataTypes.DATE, allowNull: true },
+      POExpiryDate: { type: DataTypes.DATE, allowNull: true },
+      ProductionMonth: { type: DataTypes.STRING(100), allowNull: true },
+      PriceTypeCode: { type: DataTypes.STRING(10), allowNull: true },
+      UnitPrice: { type: DataTypes.NUMERIC(18, 6), allowNull: true },
+      MOCost: { type: DataTypes.NUMERIC(18, 6), allowNull: true },
+      RevisiedUnitPrice: { type: DataTypes.NUMERIC(18, 6), allowNull: true },
+      OrderQty: { type: DataTypes.NUMERIC(18, 2), allowNull: true },
+      MOQty: { type: DataTypes.NUMERIC(18, 2), allowNull: true },
+      ManufacturingSiteID: { type: DataTypes.STRING(10), allowNull: true },
+      ContractNumber: { type: DataTypes.STRING(200), allowNull: true },
+      ContractConfirmedDate: { type: DataTypes.DATE, allowNull: true },
+      ContractExpiryDate: { type: DataTypes.DATE, allowNull: true }
+    },
+    {
+      tableName: "CustomerOrderDetail",
+      createdAt: false,
+      updatedAt: false,
+    }
+  );
 
 
 GRNDetail.removeAttribute("id");
@@ -755,3 +815,4 @@ LTNListing.removeAttribute("id");
 MSDListing.removeAttribute("id");
 FinishingProdDetail.removeAttribute("id");
 CustomerShipmentDetail.removeAttribute("id");
+CustomerOrderDetail.removeAttribute("id");
